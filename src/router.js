@@ -1,5 +1,6 @@
 import VueRouter from 'vue-router';
 import List from './components/List.vue';
+import Edit from './components/Edit.vue'
 
 export default new VueRouter({
     name : "VueRouter",
@@ -9,5 +10,9 @@ export default new VueRouter({
             component: List,
             name : 'List'
         },
+        {
+            path: '/edit/:id',
+            component: Edit
+        }
     ]
 })

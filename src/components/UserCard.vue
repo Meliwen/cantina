@@ -1,31 +1,27 @@
 <template>
-    <div class="card mb-3" style="max-width: 540px;">
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <img :src="user.photo || DEFAULT_PHOTO" :alt="`Photo de ${user.titre}`" class="card-img">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h3 class="card-title">{{user.titre}}</h3>
-        <p class="card-text">{{user.description}}</p>
-        <p class="card-text-col-3-big"><small class="text-muted">Temps de préparation</small></p>
-        <p class="card-text-col-3-big"><small class="text-muted">Nombre de personnes</small></p>
-        <p class="card-text-col-3-small"><small class="text-muted">Niveau</small></p>
-      </div>
-      <div class="card-body">
-        <p class="card-text-col-3-big"><small class="text-muted">{{user.tempsPreparation}} min</small></p>
-        <p class="card-text-col-3-big"><small class="text-muted">{{user.personnes}}</small></p>
-        <p class="card-text-col-3-small"><small class="text-muted">{{user.niveau}}</small></p>
-      </div>
-    </div>
+<div class="conteneur">
+  <div class="card">
+   <img :src="recipe.photo || DEFAULT_PHOTO" :alt="`Photo de ${recipe.titre}`">
+  <div class="card-body">
+    <h5 class="card-title">{{recipe.titre}}</h5>
+    <p class="card-text">{{recipe.description}}</p>
   </div>
+  <ul class="list-group list-group-flush" style="text-align: left">
+    <li class="list-group-item">Temps de préparation : {{recipe.tempsPreparation}} min</li>
+    <li class="list-group-item">Nombre de convives : {{recipe.personnes}} personne(s)</li>
+    <li class="list-group-item">Niveau : {{recipe.niveau}}</li>
+  </ul>
+  <div class="card-body">
+    <router-link :to="`/edit/${recipe.id}`" class="btn btn-small">Modifier</router-link>
+  </div>
+</div>
 </div>
 </template>
 <script>
 export default {
   name: "UserCard",
   props: {
-    user: {
+    recipe: {
       type: Object
     }
   },
@@ -36,12 +32,15 @@ export default {
   },
   methods: {
     onRemove: function(){
-      this.$emit("remove",this.user);
+      this.$emit("remove",this.recipe);
     }
   }
 }
 </script>
 <style scoped>
+.mb-3{
+    border: 1px solid grey;
+}
 img{
     width: 100%;
     height: auto;
@@ -56,5 +55,13 @@ h3, p{
 .card-text-col-3-small{
     width: 20%;
     display: inline-block;
+}
+.boutons{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.data-v-0ce62faa{
+  margin: 0;
 }
 </style>

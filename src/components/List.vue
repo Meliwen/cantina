@@ -4,17 +4,16 @@
     <hr>
 
     <form class="filterform" @submit.prevent> <!-- submit.prevent évite d'envoyer des informations-->
-      <input type="search" placeholder="Tapez un nom ou un lieu ..." v-model="searchText">
-
+      <input type="search" placeholder="Tapez un nom..." v-model="searchText">
       <label for="filter">Filtrer par :</label>
       <select name="filterBy" v-model="filterValue">
         <option value="name">Nom</option>
-        <option value="localisation">Localisation</option>
+        <option value="niveau">Niveau</option>
       </select>
     </form>
 
-    <div class="userlist" v-if="usersList">
-      <UserCard v-for="user in filteredList" :user="user" :key="user.id"/>
+    <div class="userlist" v-if="recipesList">
+      <UserCard v-for="recipe in filteredList" :recipe="recipe" :key="recipe.id"/>
     </div>
   </div>
 </template>
@@ -28,14 +27,14 @@ export default {
   },
   data: function(){
     return{
-      usersList: null,
+      recipesList: null,
       searchText: "",
       filterValue: "name",
     }
   },
   computed: {
     filteredList: function() {
-      return this.usersList.filter(({ titre, description, niveau }) => {
+      return this.recipesList.filter(({ titre, description, niveau }) => {
         let searchText = this.searchText.toLowerCase();
         titre = titre.toLowerCase();
         description = description.toLowerCase();
@@ -47,15 +46,15 @@ export default {
           `${titre} ${description}`.includes(searchText)
         )}
 
-        else if (this.filterValue === 'localisation'){ // si l'input dans le champ text est à "localisation"  (filtrer par localistation)
+        else if (this.filterValue === 'niveau'){ // si l'input dans le champ text est à "niveau"  (filtrer par localistation)
           return niveau.includes(searchText);// afficher les résulats des niveaux qui correspondent à l'input
         }
       });
     }
   },
   created: function(){
-    UserService.fetchAll().then(usersList => {
-        this.usersList = usersList;
+    UserService.fetchAll().then(recipesList => {
+        this.recipesList = recipesList;
     })
   }
 };
@@ -74,6 +73,14 @@ export default {
 }
 
 .filterform {
+    width: 40%;
   margin: 2em 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+}
+.container{
+    width: 100%;
+    margin: 0 auto;
 }
 </style>
