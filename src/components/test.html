@@ -1,0 +1,57 @@
+<div class="card-group">
+  <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+</div>
+
+
+old
+
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img :src="user.photo || DEFAULT_PHOTO" :alt="`Photo de ${user.titre}`" class="card-img">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h3 class="card-title">{{user.titre}}</h3>
+          <p class="card-text">{{user.description}}</p>
+          <p class="card-text-col-3-big"><small class="text-muted">Temps de préparation</small></p>
+          <p class="card-text-col-3-big"><small class="text-muted">Nombre de personnes</small></p>
+          <p class="card-text-col-3-small"><small class="text-muted">Niveau</small></p>
+        </div>
+        <div class="card-body">
+          <p class="card-text-col-3-big"><small class="text-muted">{{user.tempsPreparation}} min</small></p>
+          <p class="card-text-col-3-big"><small class="text-muted">{{user.personnes}}</small></p>
+          <p class="card-text-col-3-small"><small class="text-muted">{{user.niveau}}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
