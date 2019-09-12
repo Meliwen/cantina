@@ -8,14 +8,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <router-link to="/list" class="nav-link">Liste des recettes</router-link>
+        <router-link to="/list">Liste des recettes</router-link>
         <router-link to="/add">Ajouter une recette</router-link>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button type="button" class="btn btn-light">Rechercher</button>
-    </form>
   </div>
 </nav>
 </template>
@@ -55,7 +51,7 @@ background-color: grey;
   transform: scale(1.05);
 }
 .navbar a.router-link-exact-active {
-  background-color: grey;
+  background-color: rgb(48, 48, 48);
 }
 
 .navbar a:active {

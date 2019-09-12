@@ -42,8 +42,8 @@ export default {
         if(this.filterValue === 'name'){ // si l'input dans le champ text est à "nom"  (filtrer par nom)
 
         return ( // afficher les résulats des noms qui correspondent à l'input
-          `${description} ${titre}`.includes(searchText) ||
-          `${titre} ${description}`.includes(searchText)
+          `${titre}`.includes(searchText) ||
+          `${niveau}`.includes(searchText)
         )}
 
         else if (this.filterValue === 'niveau'){ // si l'input dans le champ text est à "niveau"  (filtrer par localistation)

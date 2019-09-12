@@ -12,6 +12,7 @@
     <li class="list-group-item">Niveau : {{recipe.niveau}}</li>
   </ul>
   <div class="card-body">
+    <router-link :to="`/read/${recipe.id}`" class="btn btn-small">Lire</router-link>
     <router-link :to="`/edit/${recipe.id}`" class="btn btn-small">Modifier</router-link>
   </div>
 </div>
