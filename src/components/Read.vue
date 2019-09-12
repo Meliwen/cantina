@@ -1,21 +1,20 @@
 <template>
 
 <div class="conteneur">
-    <h1>test</h1>
     <hr>
    <div class="recipeDetail" >
-      <UserCard :recipe="recipe" v-if="recipe"></UserCard>
+      <RecipeDetail :recipe="recipe" v-if="recipe"></RecipeDetail>
     </div>
 </div>
 </template>
 <script>
-import UserCard from "./UserCard.vue";
+import RecipeDetail from "./RecipeDetail.vue";
 import UserService from '../services/UserService.js';
 
 export default {
   name: "Read",
   components: {
-    UserCard
+    RecipeDetail
   },
   
   data: function() {
@@ -36,7 +35,7 @@ export default {
 </script>
 <style scoped>
 .recipeDetail{
-  width: 50%;
+  width: 80%;
   margin: 0 auto;
 }
 </style>

@@ -13,17 +13,17 @@
     </form>
 
     <div class="userlist" v-if="recipesList">
-      <UserCard v-for="recipe in filteredList" :recipe="recipe" :key="recipe.id"/>
+      <RecipeCard v-for="recipe in filteredList" :recipe="recipe" :key="recipe.id"/>
     </div>
   </div>
 </template>
 <script>
-import UserCard from './UserCard.vue';
+import RecipeCard from './RecipeCard.vue';
 import UserService from '../services/UserService.js';
 export default {
   name: "List",
   components: {
-    UserCard
+    RecipeCard
   },
   data: function(){
     return{

@@ -1,12 +1,12 @@
 // Uniformiser ce qui fait appel au serveur dans ce fichier
 import axios from 'axios';
 const API_ENDPOINT = 'http://localhost:9000/api';
-/*const errorHandler = (res) => {
+const errorHandler = (res) => {
     let errMessage = (res.response) ?
         `${res.response.statusText} : ${res.response.data.message}` :
         res.message;
     return Promise.reject(new Error(errMessage));
-}*/
+}
 
 export default {
     fetchAll : function(){
@@ -16,15 +16,17 @@ export default {
     },
     fetchOne: function (id) {
         return axios.get(`${API_ENDPOINT}/recipe/${id}`)
-            .then(res => res.data)
-            //.catch(errorHandler)
+        .then(res => res.data)
+        .catch(errorHandler)
     },
-    addrecipe: function(recipeObj){
+    addRecipe: function(recipeObj){
         return axios.post(`${API_ENDPOINT}/recipe`, recipeObj)
         .then(res => res.data)
+        .catch(errorHandler)
     },
-    removerecipe: function(recipeObj){
+    removeRecipe: function(recipeObj){
         return axios.delete(`${API_ENDPOINT}/recipe/${recipeObj.id}`)
         .then(res => res.data)
+        .catch(errorHandler)
     }
 }

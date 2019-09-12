@@ -20,15 +20,14 @@ export default {
     };
   },
   created: function() {
-    console.log(UserService);
     UserService.fetchOne(this.$route.params.id)
       .then(recipe => {
         console.log(recipe);
         this.recipe = recipe;
       })
       .catch(({ message }) => {
-        /*this.$toasted.error(message);
-        this.$router.replace("/");*/
+        this.$toasted.error(message);
+        this.$router.replace("/");
         console.log(message);
       });
   },

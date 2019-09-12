@@ -1,11 +1,11 @@
 <template>
   <form class="recipeform" @submit.prevent="onSubmit">
-    <div class="form-group">
-      <div class="form-group">
-      <label for="photo">Photo :</label>
+   <div class="form-group">
+     <label for="photo">Photo :</label>
       <input type="url" v-model.lazy="$v.recipe.photo.$model" id="photo" placeholder="http://">
       <span v-if="!$v.recipe.photo.url">L'URL est invalide</span>
     </div>
+    <div class="form-group">      
       <label for="titre">Titre :</label>
       <input
         type="text"
@@ -32,7 +32,6 @@
       <span v-if="$v.recipe.description.$dirty && !$v.recipe.description.required">Le champs est requis</span>
     </div>
 
-    
 
     <div class="actions">
       <button type="submit" class="btn">Envoyer</button>
@@ -63,8 +62,8 @@ export default {
   validations: {
     recipe: {
       description: { required },
-      titre: { required },
-      photo: { url }
+      titre: { required, alpha },
+      photo: {required, url}
     }
   },
 
