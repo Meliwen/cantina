@@ -28,5 +28,10 @@ export default {
         return axios.delete(`${API_ENDPOINT}/recipe/${recipeObj.id}`)
         .then(res => res.data)
         .catch(errorHandler)
+    },
+    updateRecipe: function (recipeObj) {
+        return axios.put(`${API_ENDPOINT}/recipe/${recipeObj.id}`, recipeObj)
+            .then(res => res.data)
+            .catch(errorHandler)
     }
 }

@@ -3,7 +3,7 @@
    <div class="form-group">
      <label for="photo">Photo :</label>
       <input type="url" v-model.lazy="$v.recipe.photo.$model" id="photo" placeholder="http://">
-      <span v-if="!$v.recipe.photo.url">L'URL est invalide</span>
+      <span v-if="!$v.recipe.photo">L'URL est invalide</span>
     </div>
     <div class="form-group">      
       <label for="titre">Titre :</label>
@@ -12,7 +12,7 @@
         v-model="$v.recipe.titre.$model"
         @blur="$v.recipe.titre.$touch()"
         id="titre"
-        placeholder="Titre"
+        placeholder="Titre de la recette"
       >
       <span v-if="$v.recipe.titre.$dirty && !$v.recipe.titre.required">Le champs est requis</span>
       <span
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { required, alpha, url } from "vuelidate/lib/validators";
+import { required, alpha } from "vuelidate/lib/validators";
 
 export default {
   name: "Form",
@@ -63,7 +63,7 @@ export default {
     recipe: {
       description: { required },
       titre: { required, alpha },
-      photo: {required, url}
+      photo: {required}
     }
   },
 

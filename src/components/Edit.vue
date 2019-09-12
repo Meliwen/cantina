@@ -1,6 +1,6 @@
 <template>
   <div class="container centered">
-    <h1>Editer la recette "{{recipe.titre}}"</h1>
+    <h1>Editer la recette</h1>
     <Form :recipe="recipe" v-if="recipe" @send="update"/>
   </div>
 </template>
