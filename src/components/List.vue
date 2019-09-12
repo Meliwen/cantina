@@ -42,12 +42,11 @@ export default {
         if(this.filterValue === 'name'){ // si l'input dans le champ text est à "nom"  (filtrer par nom)
 
         return ( // afficher les résulats des noms qui correspondent à l'input
-          `${titre}`.includes(searchText) ||
-          `${niveau}`.includes(searchText)
+          `${titre}`.includes(searchText)          
         )}
 
         else if (this.filterValue === 'niveau'){ // si l'input dans le champ text est à "niveau"  (filtrer par localistation)
-          return niveau.includes(searchText);// afficher les résulats des niveaux qui correspondent à l'input
+          return `${niveau}`.includes(searchText);// afficher les résulats des niveaux qui correspondent à l'input
         }
       });
     }
