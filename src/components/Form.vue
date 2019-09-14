@@ -32,6 +32,46 @@
       <span v-if="$v.recipe.description.$dirty && !$v.recipe.description.required">Le champs est requis</span>
     </div>
 
+    <div class="form-group">      
+      <label for="personnes">Nombre de convives :</label>
+      <input
+        type="number"
+        min="1" max="10"
+        v-model="$v.recipe.personnes.$model"
+        @blur="$v.recipe.personnes.$touch()"
+        id="personnes"
+        placeholder="Nombre de convives"
+      >
+      <span v-if="$v.recipe.personnes.$dirty && !$v.recipe.personnes.required">Le champs est requis</span>
+    </div>
+
+    <div class="form-group">
+      <label for="niveau">Niveau :</label>
+      <input
+        type="text"
+        v-model="$v.recipe.niveau.$model"
+        @blur="$v.recipe.niveau.$touch()"
+        id="niveau"
+        placeholder="niveau"
+      >
+      <span v-if="$v.recipe.niveau.$dirty && !$v.recipe.niveau.required">Le champs est requis</span>
+    </div>
+
+    <div class="form-group">      
+      <label for="tempsPreparation">Temps de préparation en minutes :</label>
+      <input
+        type="number"
+        v-model="$v.recipe.tempsPreparation.$model"
+        @blur="$v.recipe.tempsPreparation.$touch()"
+        id="tempsPreparation"
+        placeholder="Exemple : 20 minutes"
+      >
+      <span v-if="$v.recipe.tempsPreparation.$dirty && !$v.recipe.tempsPreparation.required">Le champs est requis</span>
+    </div>
+  
+    <addIngredient/>
+    <addEtape/>
+     
 
     <div class="actions">
       <button type="submit" class="btn">Envoyer</button>
@@ -41,10 +81,15 @@
 
 <script>
 import { required, alpha } from "vuelidate/lib/validators";
+import addIngredient from "./AddIngredient.vue";
+import addEtape from "./AddEtape.vue";
 
 export default {
   name: "Form",
-
+  components: {
+    addIngredient,
+    addEtape
+  },
   props: {
     recipe: {
       type: Object,
@@ -53,7 +98,11 @@ export default {
           id: null,
           description: "",
           titre: "",
-          photo: ""
+          photo: "",
+          personnes: null,
+          ingredient: "",
+          niveau:"",
+          tempsPreparation: "",
         };
       }
     }
@@ -63,7 +112,11 @@ export default {
     recipe: {
       description: { required },
       titre: { required, alpha },
-      photo: {required}
+      photo: {required},
+      personnes: {required },
+      ingredient: {required},
+      niveau: {required, alpha},
+      tempsPreparation:{required}
     }
   },
 
@@ -71,9 +124,11 @@ export default {
     onSubmit: function() {
       // Si les règles de l'objet 'recipe' sont invalides, on stoppe l'exécution de la fonction
       if (this.$v.recipe.$invalid) return this.$v.recipe.$touch();
-
       // Fait remonter un événement vers le composant parent
       this.$emit("send", this.recipe);
+    },
+    addIngredient: function(){
+      
     }
   }
 };
