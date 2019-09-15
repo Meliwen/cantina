@@ -45,4 +45,8 @@ export default {
 </script>
 
 <style>
+h1{
+  font-family: 'ar_destineregular';
+  font-size: 60px;
+}
 </style>

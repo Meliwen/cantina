@@ -37,6 +37,9 @@ export default {
 }
 </script>
 <style scoped>
+form input{
+  background: white;
+}
 body {
   background: #20262E;
   padding: 20px;

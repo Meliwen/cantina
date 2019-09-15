@@ -1,5 +1,5 @@
 <template>
-  <div class="container centered">
+  <div class="conteneur-big centered">
     <h1>Bienvenue sur Cantina</h1>
     <p>Une appli pour les cuisiner tous</p>
     <hr>
@@ -61,4 +61,9 @@ export default {
 </script>
 
 <style>
+.conteneur-big{
+width: 75%;
+margin: 0 auto;
+}
+
 </style>

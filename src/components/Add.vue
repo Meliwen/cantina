@@ -31,4 +31,8 @@ export default {
 </script>
 
 <style scoped>
+h1{
+  font-family: 'ar_destineregular';
+  font-size: 60px;
+}
 </style>

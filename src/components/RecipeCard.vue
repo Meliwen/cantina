@@ -1,5 +1,5 @@
 <template>
-<div class="conteneur">
+<div class="conteneur_g">
   <div class="card">
    <img :src="recipe.photo || DEFAULT_PHOTO" :alt="`Photo de ${recipe.titre}`">
   <div class="card-body">
@@ -44,8 +44,8 @@ export default {
 .card{
   border-radius: 1rem;
   -webkit-box-shadow: 8px 8px 30px -19px rgba(0,0,0,0.54);
--moz-box-shadow: 8px 8px 30px -19px rgba(0,0,0,0.54);
-box-shadow: 8px 8px 30px -19px rgba(0,0,0,0.54);
+  -moz-box-shadow: 8px 8px 30px -19px rgba(0,0,0,0.54);
+  box-shadow: 8px 8px 30px -19px rgba(0,0,0,0.54);
 }
 .mb-3{
     border: 1px solid grey;

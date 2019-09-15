@@ -69,13 +69,15 @@
       <input type="text" id="nom_ingredient" placeholder="Exemple : de farine" v-model="ingredient[1]">
     </div>
   </div>
+  <addIngredient/>
 
   <div id="addEtape">
       <div class="form-group" v-for="(etapes) in recipe.etapes" :key="etapes.id">
-      <label for="ingredient">Etapes :</label>
-      <input type="text" id="quantite" placeholder="Exemple : Peser la farine" :value="etapes">
+      <label for="etapes">Etapes :</label>
+      <input type="text" id="etape" placeholder="Exemple : Peser la farine" :value="etapes">
     </div>
   </div>
+  <addEtape/>
 
     <div class="actions">
       <button type="submit" class="btn">Envoyer</button>
@@ -85,15 +87,15 @@
 
 <script>
 import { required, alpha, url } from "vuelidate/lib/validators";
-// import addIngredient from "./AddIngredient.vue";
-// import addEtape from "./AddEtape.vue";
+import addIngredient from "./AddIngredient.vue";
+import addEtape from "./AddEtape.vue";
 
 export default {
   name: "Form",
-  // components: {
-  //   addIngredient,
-  //   addEtape
-  // },
+  components: {
+    addIngredient,
+    addEtape
+  },
   props: {
     recipe: {
       type: Object,
@@ -138,6 +140,9 @@ export default {
 </script>
 
 <style scoped>
+form input{
+  background: white;
+}
 .recipeform {
   margin: 2em 0;
 }

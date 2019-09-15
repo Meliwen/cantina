@@ -1,5 +1,5 @@
 <template>
-  <div id="addIngredient">
+  <div>
       <div class="form-group" v-for="(ingredient, index) in recipe.ingredients" :key="index">
       <label for="ingredient">Ingrédient :</label>
       <input type="text" id="quantite" placeholder="Exemple : 100g"  >
@@ -32,6 +32,9 @@ export default {
 }
 </script>
 <style scoped>
+form input{
+  background: white;
+}
 body {
   background: #20262E;
   padding: 20px;

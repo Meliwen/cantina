@@ -76,6 +76,13 @@ export default {
 
 </script>
 <style scoped>
+h1{
+  font-family: 'ar_destineregular';
+  font-size: 60px;
+}
+form input, form select{
+  background: white;
+}
 .userlist {
   display: flex;
   flex-wrap: wrap;

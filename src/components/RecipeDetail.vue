@@ -54,6 +54,23 @@ export default {
 .conteneur {
   width: 100%;
 }
+.title{
+  padding-top: 2%;
+  font-family: 'ar_destineregular';
+  font-size: 70px;
+}
+ol {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+  padding-left: 0px;
+}
+ol li {
+  counter-increment: my-awesome-counter;
+}
+ol li::before {
+  content: counter(my-awesome-counter) ". ";
+  font-family: 'ar_destineregular';
+}
 .mb-3 {
   width: 100%;
   border: 1px solid rgb(233, 233, 233);
