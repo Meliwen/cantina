@@ -69,8 +69,22 @@
       <span v-if="$v.recipe.tempsPreparation.$dirty && !$v.recipe.tempsPreparation.required">Le champs est requis</span>
     </div>
   
-    <addIngredient/>
-    <addEtape/>
+  <div id="addIngredient">
+      <div class="form-group" v-for="ingredient in recipe.ingredients" :key="ingredient.id">
+      <label for="ingredient">Ingrédient :</label>
+      <input type="text" id="quantite" placeholder="Exemple : 100g" v-model="ingredient[0]">
+      <input type="text" id="nom_ingredient" placeholder="Exemple : de farine" v-model="ingredient[1]">
+    </div>
+  </div>
+  <div id="addEtape">
+      <div class="form-group" v-for="(etapes) in recipe.etapes" :key="etapes.id">
+      <label for="ingredient">Etapes :</label>
+      <input type="text" id="quantite" placeholder="Exemple : Peser la farine" :value="etapes">
+    </div>
+  </div>
+
+    <!-- <addIngredient/>
+    <addEtape/> -->
      
 
     <div class="actions">
@@ -81,14 +95,14 @@
 
 <script>
 import { required, alpha } from "vuelidate/lib/validators";
-import addIngredient from "./AddIngredient.vue";
-import addEtape from "./AddEtape.vue";
+// import addIngredient from "./AddIngredient.vue";
+// import addEtape from "./AddEtape.vue";
 
 export default {
   name: "Form",
   components: {
-    addIngredient,
-    addEtape
+    // addIngredient,
+    // addEtape
   },
   props: {
     recipe: {
@@ -96,13 +110,17 @@ export default {
       default: function() {
         return {
           id: null,
-          description: "",
-          titre: "",
-          photo: "",
-          personnes: null,
-          ingredient: "",
-          niveau:"",
-          tempsPreparation: "",
+          titre: "Fondant au chocolat",
+          description: "Une recette rapide et gourmande",
+          niveau:"padawan",
+          personnes: 5,
+          tempsPreparation: 45,
+          ingredients: [["5" , "oeufs"],
+                        ["50g" , "de farine"],
+                        ["200g" , "de chocolats"]],
+          etapes: ["Casser les oeufs",
+                  "Mélanger la farine"],
+          photo: "https://cdn.pixabay.com/photo/2016/12/10/21/26/food-1898194_960_720.jpg",
         };
       }
     }
@@ -122,13 +140,10 @@ export default {
 
   methods: {
     onSubmit: function() {
-      // Si les règles de l'objet 'recipe' sont invalides, on stoppe l'exécution de la fonction
+      //Si les règles de l'objet 'recipe' sont invalides, on stoppe l'exécution de la fonction
       if (this.$v.recipe.$invalid) return this.$v.recipe.$touch();
-      // Fait remonter un événement vers le composant parent
+      //Fait remonter un événement vers le composant parent
       this.$emit("send", this.recipe);
-    },
-    addIngredient: function(){
-      
     }
   }
 };
