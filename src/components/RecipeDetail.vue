@@ -20,7 +20,7 @@
         </ul>
          <li class="list-group-item">
         <p><b>Étapes :</b></p>
-         <ol id="ingredients-list">
+         <ol id="etapes-list">
             <li v-for="(etapes) in recipe.etapes" :key="etapes.id">
               {{index}} {{etapes}}
             </li>
@@ -56,7 +56,7 @@ export default {
 }
 .mb-3 {
   width: 100%;
-  border: 1px solid grey;
+  border: 1px solid rgb(233, 233, 233);
   display: flex;
   flex-flow: row;
 }
@@ -85,5 +85,8 @@ h4{
 }
 #ingredients-list{
   padding-bottom: 2%;
+}
+#etapes-list{
+  text-align: left;
 }
 </style>

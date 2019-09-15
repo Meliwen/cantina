@@ -1,7 +1,5 @@
 <template>
-
 <div class="conteneur">
-    <hr>
    <div class="recipeDetail" >
       <RecipeDetail :recipe="recipe" v-if="recipe"></RecipeDetail>
     </div>

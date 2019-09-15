@@ -17,6 +17,14 @@ export default {
 </script>
 
 <style>
+@font-face {
+    font-family: 'ar_destineregular';
+    src: url('fonts/ardestine-webfont.woff2') format('woff2'),
+         url('fonts/ardestine-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -26,6 +34,7 @@ export default {
 
   body {
     margin: 0;
+    background-color: #ebe9e1;
   }
 
   .container {

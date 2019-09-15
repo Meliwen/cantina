@@ -1,12 +1,12 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="#">Cantina</a>
+    <router-link to="/home" class="navbar-titre">Cantina</router-link>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav">
       <li class="nav-item active">
         <router-link to="/list">Liste des recettes</router-link>
         <router-link to="/add">Ajouter une recette</router-link>
@@ -25,11 +25,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .navbar {
-background-color: grey;
+  background-color: #424242;
   overflow: hidden;
   margin-bottom: 3em;
+  border-bottom: 10px solid white;
 }
-
+.navbar-titre{
+  font-family: 'ar_destineregular';
+  font-size: 30px;
+}
 .navbar > .container {
   display: flex;
   flex-flow: row;
@@ -41,7 +45,7 @@ background-color: grey;
   color:  #fff;
   text-decoration: none;
   display: inline-block;
-  padding: 0.75em 1em;
+  padding: 0.25em 1em;
   transition: all 150ms;
   transform: scale(1);
 }
@@ -53,7 +57,18 @@ background-color: grey;
 .navbar a.router-link-exact-active {
   background-color: rgb(48, 48, 48);
 }
-
+.navbar-nav{
+  min-width: 380px;
+  
+}
+.nav-item{
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 10px 10px 20px;
+}
 .navbar a:active {
   transition: none;
   color:  rgb(0, 0, 0);

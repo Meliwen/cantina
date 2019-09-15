@@ -29,7 +29,7 @@ export default {
   },
   computed : {
     DEFAULT_PHOTO: function(){
-      return "https://cdn.pixabay.com/photo/2014/03/25/16/34/silverware-297422_960_720.png"
+      return "https://cdn.pixabay.com/photo/2019/09/15/14/42/14-42-27-793_960_720.png"
     }
   },
   methods: {
@@ -41,6 +41,12 @@ export default {
 }
 </script>
 <style scoped>
+.card{
+  border-radius: 1rem;
+  -webkit-box-shadow: 8px 8px 30px -19px rgba(0,0,0,0.54);
+-moz-box-shadow: 8px 8px 30px -19px rgba(0,0,0,0.54);
+box-shadow: 8px 8px 30px -19px rgba(0,0,0,0.54);
+}
 .mb-3{
     border: 1px solid grey;
 }
