@@ -7,7 +7,7 @@
 
 <script>
 import Form from "./Form";
-import UserService from "../services/UserService";
+import UserService from "../services/UserService.js";
 
 export default {
   name: "Edit",

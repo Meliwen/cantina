@@ -13,7 +13,7 @@
     </form>
 
     <div class="userlist" v-if="recipesList">
-      <RecipeCard v-for="recipe in filteredList" :recipe="recipe" :key="recipe.id"/>
+      <RecipeCard v-for="recipe in filteredList" :recipe="recipe" :key="recipe.id" @remove="removeRecipe"/>
     </div>
   </div>
 </template>
@@ -49,6 +49,22 @@ export default {
           return `${niveau}`.includes(searchText);// afficher les résulats des niveaux qui correspondent à l'input
         }
       });
+    }
+  },
+  methods: {
+    removeRecipe: function(recipeToDelete) {
+      UserService.removeRecipe(recipeToDelete)
+        .then(res => {
+          console.log(res);
+          let index = this.recipesList.indexOf(recipeToDelete);
+          if (index > -1) {
+            this.recipesList.splice(index,1);
+          }
+          this.$toasted.success(
+            `Recette "${res.recette.titre}" supprimée! 💪`
+          );
+        })
+        .catch(({ message }) => this.$toasted.error(message));
     }
   },
   created: function(){

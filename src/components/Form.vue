@@ -1,35 +1,44 @@
 <template>
-  <form class="recipeform" @submit.prevent="onSubmit">
-   <div class="form-group">
-     <label for="photo">Photo :</label>
+<form class="userform" @submit.prevent="onSubmit">
+
+    <div class="form-group">
+      <label for="photo">Photo :</label>
       <input type="url" v-model.lazy="$v.recipe.photo.$model" id="photo" placeholder="http://">
-      <span v-if="!$v.recipe.photo">L'URL est invalide</span>
+      <span v-if="!$v.recipe.photo.url">L'URL est invalide</span>
     </div>
-    <div class="form-group">      
+
+    <div class="form-group">
       <label for="titre">Titre :</label>
       <input
         type="text"
         v-model="$v.recipe.titre.$model"
         @blur="$v.recipe.titre.$touch()"
         id="titre"
-        placeholder="Titre de la recette"
+        placeholder="Titre"
       >
       <span v-if="$v.recipe.titre.$dirty && !$v.recipe.titre.required">Le champs est requis</span>
-      <span
-        v-if="$v.recipe.titre.$dirty && !$v.recipe.titre.required"
-      >Le champs ne doit contenir que des lettres</span>
     </div>
 
     <div class="form-group">
       <label for="description">Description :</label>
       <input
         type="text"
-        v-model="$v.recipe.description.$model"
-        @blur="$v.recipe.description.$touch()"
+        v-model="recipe.description"
         id="description"
         placeholder="Description"
       >
-      <span v-if="$v.recipe.description.$dirty && !$v.recipe.description.required">Le champs est requis</span>
+      <span v-if="recipe.description.$dirty && !recipe.description.required">Le champs est requis</span>
+    </div>
+
+    <div class="form-group">
+      <label for="niveau">Niveau :</label>
+      <input
+        type="text"
+        v-model="recipe.niveau"
+        id="niveau"
+        placeholder="niveau"
+      >
+      <span v-if="recipe.niveau.$dirty && !recipe.niveau.required">Le champs est requis</span>
     </div>
 
     <div class="form-group">      
@@ -37,55 +46,36 @@
       <input
         type="number"
         min="1" max="10"
-        v-model="$v.recipe.personnes.$model"
-        @blur="$v.recipe.personnes.$touch()"
+        v-model.number="recipe.personnes"
         id="personnes"
-        placeholder="Nombre de convives"
+        placeholder="Ex: 6"
       >
-      <span v-if="$v.recipe.personnes.$dirty && !$v.recipe.personnes.required">Le champs est requis</span>
-    </div>
-
-    <div class="form-group">
-      <label for="niveau">Niveau :</label>
-      <input
-        type="text"
-        v-model="$v.recipe.niveau.$model"
-        @blur="$v.recipe.niveau.$touch()"
-        id="niveau"
-        placeholder="niveau"
-      >
-      <span v-if="$v.recipe.niveau.$dirty && !$v.recipe.niveau.required">Le champs est requis</span>
     </div>
 
     <div class="form-group">      
-      <label for="tempsPreparation">Temps de préparation en minutes :</label>
+      <label for="tempsPreparation">Temps de préparation :</label>
       <input
         type="number"
-        v-model="$v.recipe.tempsPreparation.$model"
-        @blur="$v.recipe.tempsPreparation.$touch()"
+        v-model.number="recipe.tempsPreparation"
         id="tempsPreparation"
-        placeholder="Exemple : 20 minutes"
+        placeholder="Ex: 45"
       >
-      <span v-if="$v.recipe.tempsPreparation.$dirty && !$v.recipe.tempsPreparation.required">Le champs est requis</span>
     </div>
-  
-  <div id="addIngredient">
+
+    <div id="addIngredient">
       <div class="form-group" v-for="ingredient in recipe.ingredients" :key="ingredient.id">
       <label for="ingredient">Ingrédient :</label>
       <input type="text" id="quantite" placeholder="Exemple : 100g" v-model="ingredient[0]">
       <input type="text" id="nom_ingredient" placeholder="Exemple : de farine" v-model="ingredient[1]">
     </div>
   </div>
+
   <div id="addEtape">
       <div class="form-group" v-for="(etapes) in recipe.etapes" :key="etapes.id">
       <label for="ingredient">Etapes :</label>
       <input type="text" id="quantite" placeholder="Exemple : Peser la farine" :value="etapes">
     </div>
   </div>
-
-    <!-- <addIngredient/>
-    <addEtape/> -->
-     
 
     <div class="actions">
       <button type="submit" class="btn">Envoyer</button>
@@ -94,33 +84,30 @@
 </template>
 
 <script>
-import { required, alpha } from "vuelidate/lib/validators";
+import { required, alpha, url } from "vuelidate/lib/validators";
 // import addIngredient from "./AddIngredient.vue";
 // import addEtape from "./AddEtape.vue";
 
 export default {
   name: "Form",
-  components: {
-    // addIngredient,
-    // addEtape
-  },
+  // components: {
+  //   addIngredient,
+  //   addEtape
+  // },
   props: {
     recipe: {
       type: Object,
       default: function() {
         return {
           id: null,
-          titre: "Fondant au chocolat",
-          description: "Une recette rapide et gourmande",
-          niveau:"padawan",
-          personnes: 5,
-          tempsPreparation: 45,
-          ingredients: [["5" , "oeufs"],
-                        ["50g" , "de farine"],
-                        ["200g" , "de chocolats"]],
-          etapes: ["Casser les oeufs",
-                  "Mélanger la farine"],
-          photo: "https://cdn.pixabay.com/photo/2016/12/10/21/26/food-1898194_960_720.jpg",
+          titre: "",
+          description: "",
+          niveau:"",
+          personnes: null,
+          tempsPreparation: null,
+          ingredients: [["" , ""]],
+          etapes: [""],
+          photo: "",
         };
       }
     }
@@ -128,20 +115,21 @@ export default {
 
   validations: {
     recipe: {
-      description: { required },
-      titre: { required, alpha },
-      photo: {required},
-      personnes: {required },
-      ingredient: {required},
-      niveau: {required, alpha},
-      tempsPreparation:{required}
+      photo: { url },
+      titre: { required },
+      description: { required, alpha },
+      niveau: { required, alpha },
+      personnes: { required },
+      tempsPreparation: { required },
+      ingredients: { required },
+      etapes: { required },
     }
   },
 
   methods: {
     onSubmit: function() {
       //Si les règles de l'objet 'recipe' sont invalides, on stoppe l'exécution de la fonction
-      if (this.$v.recipe.$invalid) return this.$v.recipe.$touch();
+      if (this.recipe.$invalid) return this.recipe;
       //Fait remonter un événement vers le composant parent
       this.$emit("send", this.recipe);
     }

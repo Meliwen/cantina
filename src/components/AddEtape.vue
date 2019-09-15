@@ -5,7 +5,7 @@
       <input type="text" id="quantite" placeholder="Exemple : peser la farine">
     </div>
     <div>Ajouter une étape
-      <button class="button" @click="addRow">➕</button>
+      <button class="button" @click.prevent="addRow">➕</button>
     </div>
   </div>
 </template>

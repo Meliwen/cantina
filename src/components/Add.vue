@@ -2,13 +2,13 @@
   <div class="container centered">
     <h1>Ajouter une recette</h1>
     <hr>
-    <Form @send="addRecipe"/>
+    <Form @send="addRecipe"></Form>
   </div>
 </template>
 
 <script>
 import Form from "./Form";
-import UserService from "../services/UserService";
+import UserService from "../services/UserService.js";
 
 export default {
   name: "Add",

@@ -6,7 +6,7 @@
       <input type="text" id="nom_ingredient" placeholder="Exemple : de farine">
     </div>
     <div>Ajouter un ingrédient 
-      <button class="button" @click="addRow">➕</button>
+      <button class="button" @click.prevent="addRow">➕</button>
     </div>
   </div>
 </template>
@@ -26,8 +26,7 @@ export default {
   },
   methods: {
     addRow: function () {
-      this.recipe.ingredients.push({
-        value: "ingredient"});
+      this.recipe.ingredients.push ([]);
     }
   }
 }

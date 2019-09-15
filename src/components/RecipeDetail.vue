@@ -15,7 +15,7 @@
           <ul id="ingredients-list">
             <li v-for="ingredient in recipe.ingredients" :key="ingredient.id">
               {{ingredient[0]}} {{ingredient[1]}}
-              </li>
+            </li>
           </ul>
         </ul>
          <li class="list-group-item">
@@ -23,16 +23,11 @@
          <ol id="ingredients-list">
             <li v-for="(etapes) in recipe.etapes" :key="etapes.id">
               {{index}} {{etapes}}
-              </li>
+            </li>
           </ol>
          </li>
       </div>
     </div>
-    <!--
-    <router-link :to="`/read/${recipe.id}`" class="btn btn-small">Lire</router-link>
-    <router-link :to="`/edit/${recipe.id}`" class="btn btn-small">Modifier</router-link>
-  </div>
-    </div>-->
   </div>
 </template>
 <script>

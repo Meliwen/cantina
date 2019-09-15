@@ -20,7 +20,7 @@ export default {
         .catch(errorHandler)
     },
     addRecipe: function(recipeObj){
-        return axios.post(`${API_ENDPOINT}/recipe`, recipeObj)
+        return axios.post(`${API_ENDPOINT}/recipes/`, recipeObj)
         .then(res => res.data)
         .catch(errorHandler)
     },
@@ -31,7 +31,7 @@ export default {
     },
     updateRecipe: function (recipeObj) {
         return axios.put(`${API_ENDPOINT}/recipe/${recipeObj.id}`, recipeObj)
-            .then(res => res.data)
-            .catch(errorHandler)
+        .then(res => res.data)
+        .catch(errorHandler)
     }
 }
