@@ -1,5 +1,5 @@
 <template>
-  <div class="container centered">
+  <div class="container">
     <h1>Liste des recettes</h1>
     <hr>
 
@@ -104,5 +104,11 @@ form input, form select{
 .container{
     width: 100%;
     margin: 0 auto;
+    align-content: stretch;
+}
+@media screen and (max-width: 800px){
+  .conteneur_g{
+    width: 100%;
+  }
 }
 </style>

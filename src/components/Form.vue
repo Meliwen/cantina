@@ -1,5 +1,5 @@
 <template>
-<form class="userform" @submit.prevent="onSubmit">
+<form class="recipeform" @submit.prevent="onSubmit">
 
     <div class="form-group">
       <label for="photo">Photo :</label>
@@ -62,11 +62,12 @@
       >
     </div>
 
-    <div>
-      <div class="form-group" v-for="ingredient in recipe.ingredients" :key="ingredient.id">
+    <div class="ingredients">
       <label for="ingredient">Ingrédient :</label>
+      <div class="form-group" v-for="(ingredient, index) in recipe.ingredients" :key="index">
       <input type="text" placeholder="Exemple : 100g" v-model="ingredient[0]">
       <input type="text" placeholder="Exemple : de farine" v-model="ingredient[1]">
+      <button class="button" @click.prevent="removeIngredient(index)">❌</button>
     </div>
   </div>
   <div>Ajouter un ingrédient 
@@ -74,9 +75,10 @@
   </div>
 
   <div id="addEtape">
+    <label for="etapes">Etapes :</label>
       <div class="form-group" v-for="(etapes, index) in recipe.etapes" :key="index">
-      <label for="etapes">Etapes :</label>
       <input type="text" placeholder="Exemple : Peser la farine" v-model="recipe.etapes[index]">
+      <button class="button" @click.prevent="removeEtape(index)">❌</button>
     </div>
   </div>
   <div>Ajouter une étape
@@ -91,14 +93,10 @@
 
 <script>
 import { required, alpha, url } from "vuelidate/lib/validators";
-import addIngredient from "./AddIngredient.vue";
-import addEtape from "./AddEtape.vue";
 
 export default {
   name: "Form",
   components: {
-    addIngredient,
-    addEtape
   },
   props: {
     recipe: {
@@ -142,8 +140,15 @@ export default {
     addIngredient: function () {
       this.recipe.ingredients.push (["",""]);
     },
+    removeIngredient: function (index) {
+      console.log(index);
+      this.recipe.ingredients.splice(index, 1);
+    },
     addEtape: function () {
       this.recipe.etapes.push("");
+    },
+    removeEtape: function (index) {
+      this.recipe.etapes.splice(index, 1);
     }
   }
 };
@@ -152,6 +157,7 @@ export default {
 <style scoped>
 form input{
   background: white;
+  text-align: left;
 }
 .recipeform {
   margin: 2em 0;
@@ -162,10 +168,10 @@ form input{
 }
 
 .recipeform label {
-  display: inline-block;
+  display: flex;
+  flex-flow: column;
   vertical-align: middle;
   min-width: 150px;
-  text-align: right;
 }
 .recipeform input[type="radio"] + label {
   min-width: 0;

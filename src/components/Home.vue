@@ -7,9 +7,9 @@
 
     <RecipeDetail :recipe="recipe" v-if="recipe" @remove="removeRecipe"/>
 
-    <div class="actions">
-      <a href="#" class="btn" @click.prevent="refreshPage">
-        <i class="fa fa-random"/>Essayer une autre recette
+    <div class="bouton-container">
+      <a href="#" class="bouton" @click.prevent="refreshPage">
+        Essayer une autre recette
       </a>
     </div>
   </div>
@@ -65,5 +65,25 @@ export default {
 width: 75%;
 margin: 0 auto;
 }
+.bouton-container{
+  padding: 2%;
+  display: flex;
+  flex-flow: row;
+  text-decoration: none;
+  justify-content: space-evenly;
 
+}
+.bouton{
+  background-color: white;
+text-decoration: none;
+  color: #424242;
+  min-width: 150px;
+  padding: 2%;
+}
+.bouton:hover{
+  text-decoration: none;
+  background-color: #424242;
+  color: white;
+  transform: scale(1.05);
+}
 </style>
