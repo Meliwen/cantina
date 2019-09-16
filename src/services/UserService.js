@@ -11,8 +11,8 @@ const errorHandler = (res) => {
 export default {
     fetchAll : function(){
         return axios.get(`${API_ENDPOINT}/recipes`) // axios est basé sur fetch mais rajoute d'autres fonctionnalités, il est compatible avec toutes les versions des navigateurs
-        .then(res => {console.log(res);
-        return res.data}); // avec fetch : res.json()
+        .then(res => res.data) // avec fetch : res.json()
+        .catch(errorHandler) 
     },
     fetchOne: function (id) {
         return axios.get(`${API_ENDPOINT}/recipe/${id}`)

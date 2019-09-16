@@ -74,7 +74,7 @@
   <div id="addEtape">
       <div class="form-group" v-for="(etapes) in recipe.etapes" :key="etapes.id">
       <label for="etapes">Etapes :</label>
-      <input type="text" id="etape" placeholder="Exemple : Peser la farine" :value="etapes">
+      <input type="text" id="etapes" placeholder="Exemple : Peser la farine" v-model="recipe.etapes[0]">
     </div>
   </div>
   <addEtape/>

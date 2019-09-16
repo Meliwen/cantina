@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     addRow: function () {
-      this.recipe.ingredients.push ([]);
+      this.recipe.ingredients.push (["",""]);
     }
   }
 }
