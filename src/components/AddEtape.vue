@@ -1,8 +1,8 @@
 <template>
-  <div id="addEtape">
-      <div class="form-group" v-for="(ingredient, index) in recipe.etapes" :key="index">
-      <label for="ingredient">Etape :</label>
-      <input type="text" id="quantite" placeholder="Exemple : peser la farine">
+  <div>
+      <div class="form-group" v-for="(etapes, index) in recipe.etapes" :key="index">
+      <label for="etapes">Etape :</label>
+      <input type="text" id="quantite" placeholder="Exemple : peser la farine" v-model="recipe.etapes[index]">
     </div>
     <div>Ajouter une étape
       <button class="button" @click.prevent="addRow">➕</button>
@@ -23,15 +23,9 @@ export default {
         }
       }
   },
-  data: function(){
-    return{
-      valeur: ""
-    }
-  },
   methods: {
     addRow: function () {
-      this.recipe.etapes.push({
-        value: "ingredient"});
+      this.recipe.etapes.push("");
     }
   }
 }

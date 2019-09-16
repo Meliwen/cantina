@@ -62,22 +62,26 @@
       >
     </div>
 
-    <div id="addIngredient">
+    <div>
       <div class="form-group" v-for="ingredient in recipe.ingredients" :key="ingredient.id">
       <label for="ingredient">Ingrédient :</label>
-      <input type="text" id="quantite" placeholder="Exemple : 100g" v-model="ingredient[0]">
-      <input type="text" id="nom_ingredient" placeholder="Exemple : de farine" v-model="ingredient[1]">
+      <input type="text" placeholder="Exemple : 100g" v-model="ingredient[0]">
+      <input type="text" placeholder="Exemple : de farine" v-model="ingredient[1]">
     </div>
   </div>
-  <addIngredient/>
+  <div>Ajouter un ingrédient 
+    <button class="button" @click.prevent="addIngredient">➕</button>
+  </div>
 
   <div id="addEtape">
-      <div class="form-group" v-for="(etapes) in recipe.etapes" :key="etapes.id">
+      <div class="form-group" v-for="(etapes, index) in recipe.etapes" :key="index">
       <label for="etapes">Etapes :</label>
-      <input type="text" id="etapes" placeholder="Exemple : Peser la farine" v-model="recipe.etapes[0]">
+      <input type="text" placeholder="Exemple : Peser la farine" v-model="recipe.etapes[index]">
     </div>
   </div>
-  <addEtape/>
+  <div>Ajouter une étape
+    <button class="button" @click.prevent="addEtape">➕</button>
+  </div>
 
     <div class="actions">
       <button type="submit" class="btn">Envoyer</button>
@@ -134,6 +138,12 @@ export default {
       if (this.recipe.$invalid) return this.recipe;
       //Fait remonter un événement vers le composant parent
       this.$emit("send", this.recipe);
+    },
+    addIngredient: function () {
+      this.recipe.ingredients.push (["",""]);
+    },
+    addEtape: function () {
+      this.recipe.etapes.push("");
     }
   }
 };
