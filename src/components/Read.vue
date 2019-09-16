@@ -24,7 +24,6 @@ export default {
   created: function(){
     UserService.fetchOne(this.$route.params.id)
     .then(recipe => {
-      console.log(recipe);
       this.recipe = recipe;
     })
   }

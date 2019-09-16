@@ -39,7 +39,6 @@ export default {
   },
   methods: {
     onRemove: function(){
-      console.log("onRemove");
       this.$emit("remove",this.recipe);
     }
   }
@@ -47,7 +46,7 @@ export default {
 </script>
 <style scoped>
 .card{
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   -webkit-box-shadow: 8px 8px 30px -19px rgba(0,0,0,0.54);
   -moz-box-shadow: 8px 8px 30px -19px rgba(0,0,0,0.54);
   box-shadow: 8px 8px 30px -19px rgba(0,0,0,0.54);
@@ -75,16 +74,17 @@ export default {
   justify-content: space-evenly;
 
 }
-.bouton{
-  background-color: white;
-  color: #424242;
-  min-width: 150px;
-  padding: 2%;
-}
-.bouton:hover{
+.bouton {
   background-color: #424242;
-  color: white;
-  transform: scale(1);
+  color: #ffffff;
+  padding: 2% 7%;
+  border: 1px solid rgb(233, 233, 233);
+  border-radius: 0.5rem;
+}
+.bouton:hover {
+  background-color: rgb(233, 233, 233);
+  color: #000000;
+  transform: scale(1.05);
 }
 img{
     width: 100%;

@@ -1,13 +1,13 @@
 <template>
 <form class="recipeform" @submit.prevent="onSubmit">
 
-    <div class="form-group">
+    <div class="form-input-text">
       <label for="photo">Photo :</label>
       <input type="url" v-model.lazy="$v.recipe.photo.$model" id="photo" placeholder="http://">
       <span v-if="!$v.recipe.photo.url">L'URL est invalide</span>
     </div>
 
-    <div class="form-group">
+    <div class="form-input-text">
       <label for="titre">Titre :</label>
       <input
         type="text"
@@ -19,7 +19,7 @@
       <span v-if="$v.recipe.titre.$dirty && !$v.recipe.titre.required">Le champs est requis</span>
     </div>
 
-    <div class="form-group">
+    <div class="form-input-text">
       <label for="description">Description :</label>
       <input
         type="text"
@@ -30,7 +30,7 @@
       <span v-if="recipe.description.$dirty && !recipe.description.required">Le champs est requis</span>
     </div>
 
-    <div class="form-group">
+    <div class="form-input-text">
       <label for="niveau">Niveau :</label>
       <input
         type="text"
@@ -41,7 +41,7 @@
       <span v-if="recipe.niveau.$dirty && !recipe.niveau.required">Le champs est requis</span>
     </div>
 
-    <div class="form-group">      
+    <div class="form-input-text">      
       <label for="personnes">Nombre de convives :</label>
       <input
         type="number"
@@ -49,40 +49,46 @@
         v-model.number="recipe.personnes"
         id="personnes"
         placeholder="Ex: 6"
+        class="form-control"
       >
     </div>
 
-    <div class="form-group">      
+    <div class="form-input-text">      
       <label for="tempsPreparation">Temps de préparation :</label>
       <input
         type="number"
         v-model.number="recipe.tempsPreparation"
         id="tempsPreparation"
         placeholder="Ex: 45"
+        class="form-control"
       >
     </div>
+
+  <hr>
 
     <div class="ingredients">
       <label for="ingredient">Ingrédient :</label>
       <div class="form-group" v-for="(ingredient, index) in recipe.ingredients" :key="index">
       <input type="text" placeholder="Exemple : 100g" v-model="ingredient[0]">
       <input type="text" placeholder="Exemple : de farine" v-model="ingredient[1]">
-      <button class="button" @click.prevent="removeIngredient(index)">❌</button>
+      <a href="#" class="button" @click.prevent="removeIngredient(index)">❌</a>
     </div>
   </div>
-  <div>Ajouter un ingrédient 
-    <button class="button" @click.prevent="addIngredient">➕</button>
+  <div>
+    <a href="#" class="button" @click.prevent="addIngredient">Ajouter un ingrédient ➕</a>
   </div>
+
+  <hr>
 
   <div id="addEtape">
     <label for="etapes">Etapes :</label>
       <div class="form-group" v-for="(etapes, index) in recipe.etapes" :key="index">
       <input type="text" placeholder="Exemple : Peser la farine" v-model="recipe.etapes[index]">
-      <button class="button" @click.prevent="removeEtape(index)">❌</button>
+      <a href="#" class="button" @click.prevent="removeEtape(index)">❌</a>
     </div>
   </div>
-  <div>Ajouter une étape
-    <button class="button" @click.prevent="addEtape">➕</button>
+  <div>
+    <a href="#" class="button" @click.prevent="addEtape">Ajouter une étape ➕</a>
   </div>
 
     <div class="actions">
@@ -141,7 +147,6 @@ export default {
       this.recipe.ingredients.push (["",""]);
     },
     removeIngredient: function (index) {
-      console.log(index);
       this.recipe.ingredients.splice(index, 1);
     },
     addEtape: function () {
@@ -155,32 +160,54 @@ export default {
 </script>
 
 <style scoped>
+a{
+  text-decoration: none;
+  color: inherit;
+}
 form input{
   background: white;
   text-align: left;
+  min-width: 400px;
 }
 .recipeform {
   margin: 2em 0;
+  background-color:rgb(233,233,233);
+  border: 10px solid white;
+  color: #424242;
+  border-radius: 0.5rem;
 }
-
+.form-input-text{
+  width: 35%;
+  margin: 0 auto;
+  padding: 1% 0;
+}
+.form-input-text input{
+  border-radius: 0.5rem;
+}
 .recipeform .form-group {
   margin-bottom: 1.2em;
 }
-
 .recipeform label {
   display: flex;
   flex-flow: column;
   vertical-align: middle;
-  min-width: 150px;
 }
 .recipeform input[type="radio"] + label {
   min-width: 0;
   text-align: left;
   cursor: pointer;
 }
-
+.ingredients input, #addEtape input{
+  border-radius: 0.5rem;
+  margin-right: 5px;
+}
+#addEtape, .ingredients{
+  padding: 1% 0;
+}
+.actions{
+  padding-bottom: 2%;
+}
 .recipeform input:not([type="radio"]) {
-  min-width: 200px;
   vertical-align: middle;
 }
 

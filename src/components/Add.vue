@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container centered">
     <h1>Ajouter une recette</h1>
     <hr>
     <Form @send="addRecipe"></Form>

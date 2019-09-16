@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container centered">
     <h1>Liste des recettes</h1>
     <hr>
 
@@ -12,7 +12,7 @@
       </select>
     </form>
 
-    <div class="userlist" v-if="recipesList">
+    <div class="recipeList" v-if="recipesList">
       <RecipeCard v-for="recipe in filteredList" :recipe="recipe" :key="recipe.id" @remove="removeRecipe"/>
     </div>
   </div>
@@ -55,7 +55,6 @@ export default {
     removeRecipe: function(recipeToDelete) {
       UserService.removeRecipe(recipeToDelete)
         .then(res => {
-          console.log(res);
           let index = this.recipesList.indexOf(recipeToDelete);
           if (index > -1) {
             this.recipesList.splice(index,1);
@@ -83,12 +82,13 @@ h1{
 form input, form select{
   background: white;
 }
-.userlist {
+.recipeList {
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
 }
 
-.userlist > * {
+.recipeList > * {
   box-sizing: border-box;
   width: calc(94% / 3);
   margin: 1%;
@@ -99,15 +99,29 @@ form input, form select{
   margin: 2em 0;
   display: flex;
   justify-content: space-around;
-  align-items: baseline;
 }
 .container{
-    width: 100%;
-    margin: 0 auto;
-    align-content: stretch;
+  width: 100%;
+  margin: 0 auto;
+}
+.conteneur_g{
+  align-self: stretch;
+}
+.card-link{
+  display: flex;
+  align-items: stretch;
+}
+.card{
+  align-self: stretch;
 }
 @media screen and (max-width: 800px){
   .conteneur_g{
+    width: 100%;
+  }
+  h1{
+    text-align: center;
+  }
+  .filterform{
     width: 100%;
   }
 }

@@ -66,7 +66,7 @@ width: 75%;
 margin: 0 auto;
 }
 .bouton-container{
-  padding: 2%;
+  padding: 10px 0px 40px 0px;
   display: flex;
   flex-flow: row;
   text-decoration: none;
@@ -75,10 +75,11 @@ margin: 0 auto;
 }
 .bouton{
   background-color: white;
-text-decoration: none;
+  text-decoration: none;
   color: #424242;
   min-width: 150px;
-  padding: 2%;
+  padding: 10px 20px;
+  border-radius: 0.5rem;
 }
 .bouton:hover{
   text-decoration: none;

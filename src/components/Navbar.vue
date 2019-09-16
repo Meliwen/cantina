@@ -42,7 +42,7 @@ export default {
 
 .navbar a:link,
 .navbar a:visited {
-  color:  #fff;
+  color:  rgb(233,233,233);
   text-decoration: none;
   display: inline-block;
   padding: 0.25em 1em;
@@ -50,16 +50,16 @@ export default {
   transform: scale(1);
 }
 .navbar a:hover {
-  background-color: #fff;
+  background-color: rgb(233,233,233);
   color: black;
   transform: scale(1.05);
 }
 .navbar a.router-link-exact-active {
   background-color: rgb(48, 48, 48);
+  color: rgb(233,233,233);;
 }
 .navbar-nav{
   min-width: 380px;
-  
 }
 .nav-item{
   display: flex;
