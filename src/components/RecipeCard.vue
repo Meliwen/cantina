@@ -10,7 +10,12 @@
     <p class="card-text description-text">{{recipe.description}}</p>
   </div>
   <ul class="list-group list-group-flush" style="text-align: left">
-    <li class="list-group-item">Temps de préparation : {{recipe.tempsPreparation}} min</li>
+    <li class="list-group-item">Temps de préparation :
+      <span v-if="recipe.tempsPreparation > 60">{{Math.trunc(recipe.tempsPreparation/60)}}h</span>
+      {{recipe.tempsPreparation%60}}
+    <span v-if="((recipe.tempsPreparation%60) === 0) || ((recipe.tempsPreparation%60)===1)"></span>
+    min</li>
+    
     <li class="list-group-item">Nombre de convives : {{recipe.personnes}}
       <span v-if="recipe.personnes === 1">personne</span>
     <span v-else>personnes</span></li>
