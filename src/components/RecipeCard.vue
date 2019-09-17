@@ -11,7 +11,9 @@
   </div>
   <ul class="list-group list-group-flush" style="text-align: left">
     <li class="list-group-item">Temps de préparation : {{recipe.tempsPreparation}} min</li>
-    <li class="list-group-item">Nombre de convives : {{recipe.personnes}} personne(s)</li>
+    <li class="list-group-item">Nombre de convives : {{recipe.personnes}}
+      <span v-if="recipe.personnes === 1">personne</span>
+    <span v-else>personnes</span></li>
     <div class="niveau"><li class="list-group-item">Niveau : {{recipe.niveau}}</li>
     <div v-if="recipe.niveau === 'padawan'"><img src="../assets/sabre_vert.png" width="100px" style="width: 100px"></div>
     <div v-if="recipe.niveau === 'jedi'"><img src="../assets/sabre_bleu.png" width="100px" style="width: 100px"></div>
