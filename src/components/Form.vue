@@ -33,16 +33,16 @@
 
     <div class="form-input-text">
       <label for="niveau">Niveau :</label>
-      <input
-        type="text"
+      <select
         v-model="$v.recipe.niveau.$model"
         @blur="$v.recipe.niveau.$touch()"
-        id="niveau"
-        placeholder="niveau"
-      >
-      <span v-if="$v.recipe.niveau.$dirty && !$v.recipe.niveau.required">Le champs est requis</span>
+        id="niveau">
+        <option>padawan</option>
+        <option>jedi</option>
+        <option>maitre</option>
+      </select>
     </div>
-
+    
     <div class="form-input-text">      
       <label for="personnes">Nombre de convives :</label>
       <input
@@ -169,16 +169,13 @@ export default {
 </script>
 
 <style scoped>
-a{
-  text-decoration: none;
-  color: inherit;
-}
+/* MISE EN FORME */
 .top-bloc{
   width: 55%;
   margin: 0 auto;
   padding-top:2%;
 }
-form input{
+form input, form select{
   background: white;
   text-align: left;
   min-width: 400px;
@@ -197,7 +194,7 @@ form input{
   justify-content: flex-end;
   padding: 1% 0;
 }
-.form-input-text input{
+.form-input-text input, .form-input-text select{
   border-radius: 0.5rem;
 }
 .recipeform .form-group {
@@ -205,26 +202,6 @@ form input{
 }
 .top-bloc label {
   padding-right: 2%;
-}
-.bouton-container{
-  padding: 2%;
-  display: flex;
-  flex-flow: row;
-  justify-content: space-evenly;
-
-}
-.bouton {
-  background-color: #424242;
-  color: #ffffff;
-  padding: 1% 7%;
-  border-radius: 0.5rem;
-}
-.bouton:hover {
-  background-color: #ffffff;
-  color: #000000;
-  -webkit-box-shadow: 8px 8px 30px -19px rgb(0, 0, 0);
-  -moz-box-shadow: 8px 8px 30px -19px rgb(0, 0, 0);
-  box-shadow: 8px 8px 30px -19px rgb(0, 0, 0);
 }
 .recipeform input[type="radio"] + label {
   min-width: 0;
@@ -254,4 +231,35 @@ form input{
 .recipeform .input-error {
   border: 1px solid red;
 }
+/* --- /MISE EN FORME --- */
+
+/* TEXTE */
+a{
+  text-decoration: none;
+  color: inherit;
+}
+/* --- /TEXTE --- */
+
+/* BOUTONS */
+.bouton-container{
+  padding: 2%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+
+}
+.bouton {
+  background-color: #424242;
+  color: #ffffff;
+  padding: 1% 7%;
+  border-radius: 0.5rem;
+}
+.bouton:hover {
+  background-color: #ffffff;
+  color: #000000;
+  -webkit-box-shadow: 8px 8px 30px -19px rgb(0, 0, 0);
+  -moz-box-shadow: 8px 8px 30px -19px rgb(0, 0, 0);
+  box-shadow: 8px 8px 30px -19px rgb(0, 0, 0);
+}
+/* ---- /BOUTONS ---- */
 </style>
