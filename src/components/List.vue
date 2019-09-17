@@ -34,10 +34,9 @@ export default {
   },
   computed: {
     filteredList: function() {
-      return this.recipesList.filter(({ titre, description, niveau }) => {
+      return this.recipesList.filter(({ titre, niveau }) => {
         let searchText = this.searchText.toLowerCase();
         titre = titre.toLowerCase();
-        description = description.toLowerCase();
 
         if(this.filterValue === 'name'){ // si l'input dans le champ text est à "nom"  (filtrer par nom)
 
@@ -60,8 +59,8 @@ export default {
           if (index > -1) {
             this.recipesList.splice(index,1);
           }
-          this.$toasted.success(
-            `Recette "${res.recette.titre}" supprimée! 💪`
+          this.$toasted.show(
+            `Recette "${res.recette.titre}" supprimée! ❎`
           );
         })
         .catch(({ message }) => this.$toasted.error(message));

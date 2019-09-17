@@ -22,7 +22,7 @@ export default {
         .then(() => {
           // Redirige le visiteur vers la page de listing
           this.$router.replace("/list");
-          this.$toasted.success("Recette correctement ajoutée 😉 !");
+          this.$toasted.show("Recette correctement ajoutée ✔️");
         })
         .catch(({ message }) => this.$toasted.error(message));
     }

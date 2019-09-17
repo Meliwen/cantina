@@ -104,7 +104,7 @@
 </template>
 
 <script>
-import { required, url } from "vuelidate/lib/validators";
+import { required} from "vuelidate/lib/validators";
 
 export default {
   name: "Form",

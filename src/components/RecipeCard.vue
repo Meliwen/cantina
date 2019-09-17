@@ -105,6 +105,12 @@ h3, p{
 /* --- /TEXTE --- */
 
 /* BOUTONS */
+.bouton-container {
+  padding: 2%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+}
 .bouton, .bouton-delete {
   background-color: #424242;
   color: #ffffff;
