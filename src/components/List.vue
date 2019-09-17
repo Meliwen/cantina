@@ -95,6 +95,7 @@ form input, form select{
   margin: 2em 0;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 .container{
   width: 100%;
