@@ -19,7 +19,7 @@
 </template>
 <script>
 import RecipeCard from './RecipeCard.vue';
-import UserService from '../services/UserService.js';
+import RecipeService from '../services/RecipeService.js';
 export default {
   name: "List",
   components: {
@@ -53,7 +53,8 @@ export default {
   },
   methods: {
     removeRecipe: function(recipeToDelete) {
-      UserService.removeRecipe(recipeToDelete)
+      if (confirm("Voulez-vous vraiment suprimer cette recette ?"))
+      RecipeService.removeRecipe(recipeToDelete)
         .then(res => {
           let index = this.recipesList.indexOf(recipeToDelete);
           if (index > -1) {
@@ -67,7 +68,7 @@ export default {
     }
   },
   created: function(){
-    UserService.fetchAll().then(recipesList => {
+    RecipeService.fetchAll().then(recipesList => {
         this.recipesList = recipesList;
     })
   }
@@ -75,10 +76,7 @@ export default {
 
 </script>
 <style scoped>
-h1{
-  font-family: 'ar_destineregular';
-  font-size: 60px;
-}
+/* MISE EN FORME */
 form input, form select{
   background: white;
 }
@@ -87,7 +85,6 @@ form input, form select{
   flex-wrap: wrap;
   align-items: stretch;
 }
-
 .recipeList > * {
   box-sizing: border-box;
   width: calc(94% / 3);
@@ -95,7 +92,7 @@ form input, form select{
 }
 
 .filterform {
-    width: 40%;
+  width: 40%;
   margin: 2em 0;
   display: flex;
   justify-content: space-around;
@@ -104,16 +101,15 @@ form input, form select{
   width: 100%;
   margin: 0 auto;
 }
-.conteneur_g{
-  align-self: stretch;
+/* --- /MISE EN FORME --- */
+
+/* TEXTE */
+h1{
+  font-family: 'ar_destineregular';
+  font-size: 60px;
 }
-.card-link{
-  display: flex;
-  align-items: stretch;
-}
-.card{
-  align-self: stretch;
-}
+/* --- /TEXTE --- */
+
 @media screen and (max-width: 800px){
   .conteneur_g{
     width: 100%;

@@ -7,7 +7,7 @@
 
 <script>
 import Form from "./Form";
-import UserService from "../services/UserService.js";
+import RecipeService from "../services/RecipeService.js";
 
 export default {
   name: "Edit",
@@ -20,20 +20,18 @@ export default {
     };
   },
   created: function() {
-    UserService.fetchOne(this.$route.params.id)
+    RecipeService.fetchOne(this.$route.params.id)
       .then(recipe => {
-        console.log(recipe);
         this.recipe = recipe;
       })
       .catch(({ message }) => {
         this.$toasted.error(message);
         this.$router.replace("/");
-        console.log(message);
       });
   },
   methods: {
     update: function(recipe) {
-      UserService.updateRecipe(recipe)
+      RecipeService.updateRecipe(recipe)
         .then(() => {
           this.$toasted.success("Recette mise à jour ! 😉");
           this.$router.replace("/list");
@@ -45,8 +43,4 @@ export default {
 </script>
 
 <style>
-h1{
-  font-family: 'ar_destineregular';
-  font-size: 60px;
-}
 </style>

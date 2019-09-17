@@ -16,8 +16,7 @@
           </li>
           <li class="list-group-item">
             <b>Nombre de convives :</b>
-            {{recipe.personnes}}
-            <img src="../assets/stormtrooper.png" width="20px" style="width: 20px" />
+            {{recipe.personnes}} personne(s)
           </li>
           <div class="niveau">
             <li class="list-group-item">Niveau : {{recipe.niveau}}</li>
@@ -48,12 +47,12 @@
             <b>Étapes :</b>
           </p>
           <ol id="etapes-list">
-            <li v-for="(etapes) in recipe.etapes" :key="etapes.id">{{index}} {{etapes}}</li>
+            <li v-for="(etapes) in recipe.etapes" :key="etapes.id">{{etapes}}</li>
           </ol>
         </li>
       </div>
       <div class="bouton-container mobile">
-        <router-link :to="`/edit/${recipe.id}`" class="btn bouton">Modifier</router-link>
+        <router-link :to="`/edit/${recipe.id}`" class="bouton">Modifier</router-link>
       </div>
   </div>
 </template>
@@ -73,53 +72,7 @@ export default {
 };
 </script>
 <style scoped>
-.conteneur {
-  width: 100%;
-}
-.title {
-  padding-top: 2%;
-  font-family: "ar_destineregular";
-  font-size: 70px;
-}
-.niveau {
-  display: flex;
-  flex-flow: row;
-  align-items: baseline;
-  border-bottom: 1px solid #dfdfdf;
-}
-.bouton-container {
-  padding: 2%;
-  display: flex;
-  flex-flow: row;
-  justify-content: space-evenly;
-}
-.mobile{
-  display: none;
-}
-.bouton {
-  border-radius: 0.5rem;
-  background-color: #424242;
-  color: #ffffff;
-  padding: 2% 7%;
-  border: 1px solid rgb(233, 233, 233);
-}
-.bouton:hover {
-  background-color: rgb(233, 233, 233);
-  color: #000000;
-  transform: scale(1.05);
-}
-ol {
-  list-style: none;
-  counter-reset: my-awesome-counter;
-  padding-left: 0px;
-}
-ol li {
-  counter-increment: my-awesome-counter;
-}
-ol li::before {
-  content: counter(my-awesome-counter) ". ";
-  font-family: "ar_destineregular";
-}
+/* MISE EN PAGE */
 .mb-3 {
   width: 100%;
   border: 1px solid rgb(233, 233, 233);
@@ -141,16 +94,30 @@ img {
   margin: 0;
   border-right: 1px solid rgb(233, 233, 233);
 }
+.niveau {
+  display: flex;
+  flex-flow: row;
+  align-items: baseline;
+  border-bottom: 1px solid #dfdfdf;
+}
+h4 {
+  padding-top: 2%;
+}
 .text,
 .title,
 h4 {
   padding-left: 3%;
 }
+/* ---- /MISE EN PAGE ---- */
+
+/* TEXTE */
 .description-text {
   color: #7d7d7d;
 }
-h4 {
+.title {
   padding-top: 2%;
+  font-family: "ar_destineregular";
+  font-size: 70px;
 }
 .ingredients-title {
   padding: 2% 0 0 3%;
@@ -166,6 +133,52 @@ h4 {
 #etapes-list {
   text-align: left;
 }
+/* ---- /TEXTE ---- */
+
+/* BOUTONS */
+.bouton-container {
+  padding: 2%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+}
+.mobile{
+  display: none;
+}
+.bouton, .bouton-delete {
+  background-color: #424242;
+  color: #ffffff;
+  padding: 2% 7%;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  min-width: 125px;
+}
+.bouton-delete:hover{
+  background-color: red;
+  transform: scale(1.05);
+}
+.bouton:hover {
+  background-color: rgb(233, 233, 233);
+  color: #000000;
+  transform: scale(1.05);
+}
+/* ---- /BOUTONS ---- */
+
+/* LISTES */
+ol {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+  padding-left: 0px;
+}
+ol li {
+  counter-increment: my-awesome-counter;
+}
+ol li::before {
+  content: counter(my-awesome-counter) ". ";
+  font-family: "ar_destineregular";
+}
+/* ---- /LISTES ---- */
+
 @media screen and (max-width: 800px){
 .card-detail-container{
 display: flex;

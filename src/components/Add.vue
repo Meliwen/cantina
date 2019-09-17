@@ -8,7 +8,7 @@
 
 <script>
 import Form from "./Form";
-import UserService from "../services/UserService.js";
+import RecipeService from "../services/RecipeService.js";
 
 export default {
   name: "Add",
@@ -18,7 +18,7 @@ export default {
   methods: {
     addRecipe: function(recipe) {
       // Le formulaire est valide, on prépare donc l'envoi des données au serveur
-      UserService.addRecipe(recipe)
+      RecipeService.addRecipe(recipe)
         .then(() => {
           // Redirige le visiteur vers la page de listing
           this.$router.replace("/list");

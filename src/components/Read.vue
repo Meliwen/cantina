@@ -7,7 +7,7 @@
 </template>
 <script>
 import RecipeDetail from "./RecipeDetail.vue";
-import UserService from '../services/UserService.js';
+import RecipeService from '../services/RecipeService.js';
 
 export default {
   name: "Read",
@@ -22,7 +22,7 @@ export default {
   },
 
   created: function(){
-    UserService.fetchOne(this.$route.params.id)
+    RecipeService.fetchOne(this.$route.params.id) //fetchAll
     .then(recipe => {
       this.recipe = recipe;
     })

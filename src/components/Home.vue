@@ -17,7 +17,7 @@
 
 <script>
 import RecipeDetail from "./RecipeDetail.vue";
-import UserService from "../services/UserService.js";
+import RecipeService from "../services/RecipeService.js";
 
 export default {
   name: "Home",
@@ -37,7 +37,7 @@ export default {
         document.location.reload(true);
     },
     removeRecipe: function(recipeToDelete) {
-      UserService.removeRecipe(recipeToDelete)
+      RecipeService.removeRecipe(recipeToDelete)
         .then(() => {
           let index = this.recipe(recipeToDelete);
           if (index > -1) {
@@ -50,7 +50,7 @@ export default {
     }
   },
   created: function() {
-    UserService.fetchAll()
+    RecipeService.fetchAll()
       .then(usersList => {
         this.recipe = usersList;
         this.getRandomRecipe();
@@ -60,13 +60,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+/* MISE EN FORME */
 .conteneur-big{
 width: 75%;
 margin: 0 auto;
 }
+/* ---- /MISE EN FORME ---- */
+
+/* BOUTONS */
 .bouton-container{
-  padding: 10px 0px 40px 0px;
+  padding: 10px 0px 10px 0px;
   display: flex;
   flex-flow: row;
   text-decoration: none;
@@ -87,4 +91,5 @@ margin: 0 auto;
   color: white;
   transform: scale(1.05);
 }
+/* ---- /BOUTONS ---- */
 </style>

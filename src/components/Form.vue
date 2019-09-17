@@ -1,6 +1,6 @@
 <template>
 <form class="recipeform" @submit.prevent="onSubmit">
-
+  <div class="top-bloc">
     <div class="form-input-text">
       <label for="photo">Photo :</label>
       <input type="url" v-model.lazy="$v.recipe.photo.$model" id="photo" placeholder="http://">
@@ -23,22 +23,24 @@
       <label for="description">Description :</label>
       <input
         type="text"
-        v-model="recipe.description"
+        v-model="$v.recipe.description.$model"
+        @blur="$v.recipe.description.$touch()"
         id="description"
         placeholder="Description"
       >
-      <span v-if="recipe.description.$dirty && !recipe.description.required">Le champs est requis</span>
+      <span v-if="$v.recipe.description.$dirty && !$v.recipe.description.required">Le champs est requis</span>
     </div>
 
     <div class="form-input-text">
       <label for="niveau">Niveau :</label>
       <input
         type="text"
-        v-model="recipe.niveau"
+        v-model="$v.recipe.niveau.$model"
+        @blur="$v.recipe.niveau.$touch()"
         id="niveau"
         placeholder="niveau"
       >
-      <span v-if="recipe.niveau.$dirty && !recipe.niveau.required">Le champs est requis</span>
+      <span v-if="$v.recipe.niveau.$dirty && !$v.recipe.niveau.required">Le champs est requis</span>
     </div>
 
     <div class="form-input-text">      
@@ -46,24 +48,28 @@
       <input
         type="number"
         min="1" max="10"
-        v-model.number="recipe.personnes"
+        v-model.number="$v.recipe.personnes.$model"
+        @blur="$v.recipe.personnes.$touch()"
         id="personnes"
         placeholder="Ex: 6"
         class="form-control"
       >
+      <span v-if="$v.recipe.personnes.$dirty && !$v.recipe.personnes.required">Le champs est requis</span>
     </div>
-
+    
     <div class="form-input-text">      
       <label for="tempsPreparation">Temps de préparation :</label>
       <input
         type="number"
-        v-model.number="recipe.tempsPreparation"
+        v-model.number="$v.recipe.tempsPreparation.$model"
+        @blur="$v.recipe.tempsPreparation.$touch()"
         id="tempsPreparation"
         placeholder="Ex: 45"
         class="form-control"
       >
+      <span v-if="$v.recipe.tempsPreparation.$dirty && !$v.recipe.tempsPreparation.required">Le champs est requis</span>
     </div>
-
+  </div>
   <hr>
 
     <div class="ingredients">
@@ -91,14 +97,14 @@
     <a href="#" class="button" @click.prevent="addEtape">Ajouter une étape ➕</a>
   </div>
 
-    <div class="actions">
-      <button type="submit" class="btn">Envoyer</button>
+    <div class="bouton-container">
+      <button type="submit" class="bouton">Envoyer</button>
     </div>
   </form>
 </template>
 
 <script>
-import { required, alpha, url } from "vuelidate/lib/validators";
+import { required, url } from "vuelidate/lib/validators";
 
 export default {
   name: "Form",
@@ -125,14 +131,17 @@ export default {
 
   validations: {
     recipe: {
-      photo: { url },
+      photo: { url:function(url){
+        if(url.startsWith("http")|| url.startsWith("https")){
+          return true;
+        }
+        return false;
+      } },
       titre: { required },
-      description: { required, alpha },
-      niveau: { required, alpha },
+      description: { required },
+      niveau: { required },
       personnes: { required },
-      tempsPreparation: { required },
-      ingredients: { required },
-      etapes: { required },
+      tempsPreparation: { required }
     }
   },
 
@@ -164,6 +173,11 @@ a{
   text-decoration: none;
   color: inherit;
 }
+.top-bloc{
+  width: 55%;
+  margin: 0 auto;
+  padding-top:2%;
+}
 form input{
   background: white;
   text-align: left;
@@ -177,8 +191,10 @@ form input{
   border-radius: 0.5rem;
 }
 .form-input-text{
-  width: 35%;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   padding: 1% 0;
 }
 .form-input-text input{
@@ -187,10 +203,28 @@ form input{
 .recipeform .form-group {
   margin-bottom: 1.2em;
 }
-.recipeform label {
+.top-bloc label {
+  padding-right: 2%;
+}
+.bouton-container{
+  padding: 2%;
   display: flex;
-  flex-flow: column;
-  vertical-align: middle;
+  flex-flow: row;
+  justify-content: space-evenly;
+
+}
+.bouton {
+  background-color: #424242;
+  color: #ffffff;
+  padding: 1% 7%;
+  border-radius: 0.5rem;
+}
+.bouton:hover {
+  background-color: #ffffff;
+  color: #000000;
+  -webkit-box-shadow: 8px 8px 30px -19px rgb(0, 0, 0);
+  -moz-box-shadow: 8px 8px 30px -19px rgb(0, 0, 0);
+  box-shadow: 8px 8px 30px -19px rgb(0, 0, 0);
 }
 .recipeform input[type="radio"] + label {
   min-width: 0;

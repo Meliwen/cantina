@@ -7,7 +7,7 @@ import VueToasted from 'vue-toasted'
 
 Vue.use(VueRouter)
 Vue.use(Vuelidate)
-Vue.use(VueToasted)
+Vue.use(VueToasted, {duration : 5000})
 
 Vue.config.productionTip = false
 
