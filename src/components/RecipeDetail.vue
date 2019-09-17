@@ -11,12 +11,17 @@
         <p class="text description-text">{{recipe.description}}</p>
         <ul class="list-group list-group-flush" style="text-align: left">
           <li class="list-group-item">
-            <b>Temps de préparation :</b>
-            {{recipe.tempsPreparation}} min
+            <b>Temps de préparation : </b>
+            <span v-if="recipe.tempsPreparation > 60">{{Math.trunc(recipe.tempsPreparation/60)}}h</span>
+            {{recipe.tempsPreparation%60}}
+            <span v-if="((recipe.tempsPreparation%60) === 0) || ((recipe.tempsPreparation%60)===1)"></span>
+            min
           </li>
           <li class="list-group-item">
             <b>Nombre de convives :</b>
-            {{recipe.personnes}} personne(s)
+            {{recipe.personnes}}
+            <span v-if="recipe.personnes === 1">personne</span>
+    <span v-else>personnes</span>
           </li>
           <div class="niveau">
             <li class="list-group-item">Niveau : {{recipe.niveau}}</li>
@@ -129,8 +134,6 @@ h4 {
   list-style-type: none;
   border-bottom: none;
   border-left: none;
-}
-#etapes-list {
   text-align: left;
 }
 /* ---- /TEXTE ---- */
