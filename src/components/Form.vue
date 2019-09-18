@@ -73,7 +73,7 @@
   <hr>
 
     <div class="ingredients">
-      <label for="ingredient">Ingrédient :</label>
+      <label for="ingredient">Ingrédients :</label>
       <div class="form-group" v-for="(ingredient, index) in recipe.ingredients" :key="index">
       <input type="text" placeholder="Exemple : 100g" v-model="ingredient[0]">
       <input type="text" placeholder="Exemple : de farine" v-model="ingredient[1]">
